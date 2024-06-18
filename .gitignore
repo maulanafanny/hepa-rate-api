@@ -12,6 +12,10 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+# Supabse
+supabase/.branches
+supabase/.temp
+
 # OS
 .DS_Store
 

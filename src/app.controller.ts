@@ -1,5 +1,9 @@
-import { Controller, Get, Post } from '@nestjs/common'
+import { Body, Controller, Get, Post } from '@nestjs/common'
 import { AppService } from './app.service'
+
+class HelloDTO {
+  name: string
+}
 
 @Controller()
 export class AppController {
@@ -11,7 +15,7 @@ export class AppController {
   }
 
   @Post()
-  postHello(name: string): string {
-    return this.appService.postHello(name)
+  postHello(@Body() payload: HelloDTO): string {
+    return this.appService.postHello(payload.name)
   }
 }
