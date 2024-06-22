@@ -8,6 +8,20 @@
       "when": 1718256821217,
       "tag": "0000_brown_unus",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1719021889880,
+      "tag": "0001_smiling_sphinx",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1719041246208,
+      "tag": "0002_legal_beast",
+      "breakpoints": true
     }
   ]
 }
