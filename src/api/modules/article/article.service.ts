@@ -8,8 +8,8 @@ import { ArticleEntity } from '@core/common/database/entities/article/article.en
 export class ArticleService {
   constructor(private readonly articleDao: ArticleDao) {}
 
-  create(createArticleDto: CreateArticleDto) {
-    return 'This action adds a new article'
+  async create(createArticleDto: CreateArticleDto) {
+    return await this.articleDao.insertNewRecord(createArticleDto)
   }
 
   async findAll(): Promise<ArticleEntity[]> {
@@ -26,11 +26,11 @@ export class ArticleService {
     ])) as ArticleEntity
   }
 
-  update(id: number, updateArticleDto: UpdateArticleDto) {
-    return `This action updates a #${id} article`
+  async update(id: number, updateArticleDto: UpdateArticleDto) {
+    return await this.articleDao.updateById(id, updateArticleDto)
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} article`
+  async remove(id: number) {
+    return await this.articleDao.deleteById(id)
   }
 }
