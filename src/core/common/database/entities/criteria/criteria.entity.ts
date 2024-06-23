@@ -2,6 +2,7 @@ import { doublePrecision, integer, pgTable, serial } from 'drizzle-orm/pg-core'
 import { withModificationDates } from '@core/common/database/entities/helpers/with-modification-dates'
 import { year } from '../year/year.entity'
 import { district } from '../district/district.entity'
+import { relations } from 'drizzle-orm'
 
 export const criteria = pgTable('criteria', {
   id: serial('id').primaryKey(),
@@ -17,6 +18,13 @@ export const criteria = pgTable('criteria', {
     .references(() => year.id)
     .notNull(),
   ...withModificationDates,
+})
+
+export const criteriaRelations = relations(criteria, ({ one }) => {
+  return {
+    district: one(district),
+    year: one(year),
+  }
 })
 
 export type CriteriaEntity = typeof criteria.$inferSelect
