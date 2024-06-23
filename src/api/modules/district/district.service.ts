@@ -17,13 +17,7 @@ export class DistrictService {
   }
 
   async findOne(id: number): Promise<DistrictEntity> {
-    return (await this.districtDao.getOneById(id, [
-      'id',
-      'title',
-      'content',
-      'createdAt',
-      'updatedAt',
-    ])) as DistrictEntity
+    return (await this.districtDao.getOneById(id, ['id', 'name'])) as DistrictEntity
   }
 
   async update(id: number, updateDistrictDto: UpdateDistrictDto) {

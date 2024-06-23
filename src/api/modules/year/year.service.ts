@@ -17,13 +17,7 @@ export class YearService {
   }
 
   async findOne(id: number): Promise<YearEntity> {
-    return (await this.yearDao.getOneById(id, [
-      'id',
-      'title',
-      'content',
-      'createdAt',
-      'updatedAt',
-    ])) as YearEntity
+    return (await this.yearDao.getOneById(id, ['id', 'year'])) as YearEntity
   }
 
   async update(id: number, updateYearDto: UpdateYearDto) {
