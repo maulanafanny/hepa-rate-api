@@ -11,6 +11,7 @@ export const criteria = pgTable('criteria', {
   sanitation_rate: doublePrecision('sanitation_rate').notNull(),
   clean_water_rate: doublePrecision('clean_water_rate').notNull(),
   safe_house_rate: doublePrecision('safe_house_rate').notNull(),
+  cluster_id: integer('cluster_id'),
   district_id: integer('district_id')
     .references(() => district.id)
     .notNull(),

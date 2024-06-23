@@ -1,0 +1,1 @@
+ALTER TABLE "criteria" ADD COLUMN "cluster_id" integer;

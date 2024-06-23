@@ -1,10 +1,13 @@
 import { Injectable } from '@nestjs/common'
+import { eq } from 'drizzle-orm'
 import { CreateCriteriaDto } from './dto/create-criteria.dto'
 import { UpdateCriteriaDto } from './dto/update-criteria.dto'
 import { CriteriaDao } from '../../../core/common/database/entities/criteria/criteria.dao'
-import { criteria, CriteriaEntity } from '../../../core/common/database/entities/criteria/criteria.entity'
+import {
+  criteria,
+  CriteriaEntity,
+} from '../../../core/common/database/entities/criteria/criteria.entity'
 import { district } from '../../../core/common/database/entities/district/district.entity'
-import { eq } from 'drizzle-orm'
 import { year } from '../../../core/common/database/entities/year/year.entity'
 
 @Injectable()
