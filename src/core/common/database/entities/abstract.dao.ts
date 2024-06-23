@@ -21,23 +21,41 @@ export class AbstractDao<
     return useDynamicSchema(this.entity, this.dbConfig.schemaName)
   }
 
-  async getAll() {
-    return this.db.select().from(this.useSchema).execute()
+  async getAll(queryBuilder?: (query) => void) {
+    const query = this.db.select().from(this.useSchema)
+
+    if (queryBuilder) {
+      queryBuilder(query)
+    }
+
+    return await query.execute()
   }
 
   async getById(
     id: number,
     fieldsToSelect?: (keyof Entity)[],
+    queryBuilder?: (query) => void,
   ): Promise<Partial<InferEntitySelected>[]> {
     const selectedFields = this.selectFields(fieldsToSelect)
-    return this.db.select(selectedFields).from(this.useSchema).where(eq(this.entity['id'], id))
+
+    const query = this.db.select(selectedFields).from(this.useSchema)
+
+    if (queryBuilder) {
+      queryBuilder(query)
+    }
+
+    return query.where(eq(this.entity['id'], id))
   }
 
-  async getOneById(
-    id: number,
-    fieldsToSelect?: (keyof Entity)[],
-  ): Promise<Partial<InferEntitySelected>> {
-    const res = await this.getById(id, fieldsToSelect)
+  async getOneById(id: number, fieldsToSelect?: (keyof Entity)[], queryBuilder?: (query) => void) {
+    const query = this.db.select().from(this.useSchema)
+
+    if (queryBuilder) {
+      queryBuilder(query)
+    }
+
+    const res = await query.where(eq(this.entity['id'], id)).execute()
+
     return res && res.length > 0 ? res[0] : null
   }
 
