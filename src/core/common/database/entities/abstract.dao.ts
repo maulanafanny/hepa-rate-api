@@ -1,9 +1,9 @@
 import { Inject } from '@nestjs/common'
 import { eq, Table } from 'drizzle-orm'
 import { PostgresJsDatabase } from 'drizzle-orm/postgres-js'
-import { DatabaseConfig } from '@core/common/database/config/database.config'
-import { PG_CONNECTION } from '@core/common/database/drizzle/pg-connection'
-import { useDynamicSchema } from '@core/common/database/entities/helpers/use-dynamic-schema'
+import { DatabaseConfig } from '../config/database.config'
+import { PG_CONNECTION } from '../drizzle/pg-connection'
+import { useDynamicSchema } from '../entities/helpers/use-dynamic-schema'
 
 export class AbstractDao<
   TSchema extends Record<string, unknown>,

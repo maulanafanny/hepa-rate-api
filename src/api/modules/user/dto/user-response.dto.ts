@@ -1,4 +1,4 @@
-// import { UserEntity } from '@core/common/database/entities/user/user.entity'
+// import { UserEntity } from '../../../../core/common/database/entities/user/user.entity'
 
 export class UserResponseDto {
   id: number

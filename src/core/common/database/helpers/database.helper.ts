@@ -1,5 +1,5 @@
 import { Client, QueryResultRow } from 'pg'
-import * as schema from '@core/common/database/entities/entities.schema'
+import * as schema from '../entities/entities.schema'
 import { sql } from 'drizzle-orm'
 import { migrate } from 'drizzle-orm/pglite/migrator'
 import { drizzle } from 'drizzle-orm/node-postgres'

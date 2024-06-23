@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { CreateYearDto } from './dto/create-year.dto'
 import { UpdateYearDto } from './dto/update-year.dto'
-import { YearDao } from '@core/common/database/entities/year/year.dao'
-import { YearEntity } from '@core/common/database/entities/year/year.entity'
+import { YearDao } from '../../../core/common/database/entities/year/year.dao'
+import { YearEntity } from '../../../core/common/database/entities/year/year.entity'
 
 @Injectable()
 export class YearService {

@@ -1,4 +1,4 @@
-import { ArticleEntity } from '@core/common/database/entities/article/article.entity'
+import { ArticleEntity } from '../../../../core/common/database/entities/article/article.entity'
 
 export class ArticleResponseDto implements ArticleEntity {
   id: number

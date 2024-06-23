@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { CreateDistrictDto } from './dto/create-district.dto'
 import { UpdateDistrictDto } from './dto/update-district.dto'
-import { DistrictDao } from '@core/common/database/entities/district/district.dao'
-import { DistrictEntity } from '@core/common/database/entities/district/district.entity'
+import { DistrictDao } from '../../../core/common/database/entities/district/district.dao'
+import { DistrictEntity } from '../../../core/common/database/entities/district/district.entity'
 
 @Injectable()
 export class DistrictService {

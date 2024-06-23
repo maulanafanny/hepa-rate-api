@@ -1,5 +1,5 @@
 import { doublePrecision, integer, pgTable, serial } from 'drizzle-orm/pg-core'
-import { withModificationDates } from '@core/common/database/entities/helpers/with-modification-dates'
+import { withModificationDates } from '../../entities/helpers/with-modification-dates'
 import { year } from '../year/year.entity'
 import { district } from '../district/district.entity'
 import { relations } from 'drizzle-orm'

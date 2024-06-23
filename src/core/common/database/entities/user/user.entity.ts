@@ -1,5 +1,5 @@
 import { index, pgTable, serial, text, varchar } from 'drizzle-orm/pg-core'
-import { withModificationDates } from '@core/common/database/entities/helpers/with-modification-dates'
+import { withModificationDates } from '../../entities/helpers/with-modification-dates'
 
 export const user = pgTable(
   'user',

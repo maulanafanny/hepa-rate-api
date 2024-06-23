@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common'
 import { CreateCriteriaDto } from './dto/create-criteria.dto'
 import { UpdateCriteriaDto } from './dto/update-criteria.dto'
-import { CriteriaDao } from '@core/common/database/entities/criteria/criteria.dao'
-import { criteria, CriteriaEntity } from '@core/common/database/entities/criteria/criteria.entity'
-import { district } from '@core/common/database/entities/district/district.entity'
+import { CriteriaDao } from '../../../core/common/database/entities/criteria/criteria.dao'
+import { criteria, CriteriaEntity } from '../../../core/common/database/entities/criteria/criteria.entity'
+import { district } from '../../../core/common/database/entities/district/district.entity'
 import { eq } from 'drizzle-orm'
-import { year } from '@core/common/database/entities/year/year.entity'
+import { year } from '../../../core/common/database/entities/year/year.entity'
 
 @Injectable()
 export class CriteriaService {
