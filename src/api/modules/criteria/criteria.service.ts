@@ -23,6 +23,7 @@ export class CriteriaService {
       query
         .leftJoin(district, eq(district.id, criteria.district_id))
         .leftJoin(year, eq(year.id, criteria.year_id))
+        .orderBy(criteria.district_id)
     })
   }
 
@@ -51,6 +52,39 @@ export class CriteriaService {
 
   async update(id: number, updateCriteriaDto: UpdateCriteriaDto) {
     return await this.criteriaDao.updateById(id, updateCriteriaDto)
+  }
+
+  async clustering(yearId: number) {
+    const data = (await this.criteriaDao.getAll())
+      .filter((d) => d.year_id === yearId)
+      .map((d) => ({
+        total_case: d.total_case,
+        clean_water_rate: d.clean_water_rate,
+        safe_house_rate: d.safe_house_rate,
+        total_population: d.total_population,
+        sanitation_rate: d.sanitation_rate,
+        district_id: d.district_id,
+        year_id: d.year_id,
+      }))
+      .sort((a, b) => a.district_id - b.district_id)
+
+    try {
+      const response = await fetch('http://127.0.0.1:3333/clustering', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          dataset: data,
+        }),
+      })
+
+      console.log(response.status)
+    } catch (error) {
+      console.log(error)
+    }
+
+    return data
   }
 
   async remove(id: number) {

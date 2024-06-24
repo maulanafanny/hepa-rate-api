@@ -28,6 +28,11 @@ export class CriteriaController {
     return this.criteriaService.update(+id, updateCriteriaDto)
   }
 
+  @Get('clustering/:yearId')
+  async clustering(@Param('yearId') yearId: string) {
+    return this.criteriaService.clustering(+yearId)
+  }
+
   @Delete(':id')
   async remove(@Param('id') id: string) {
     return this.criteriaService.remove(+id)
