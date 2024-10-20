@@ -6,11 +6,6 @@
       "use": "@vercel/node"
     }
   ],
-  "paths": {
-    "@api/*": ["src/api/*"],
-    "@core/*": ["src/core/*"],
-    "@test/*": ["./test/*"]
-  },
   "routes": [
     {
       "src": "/(.*)",
