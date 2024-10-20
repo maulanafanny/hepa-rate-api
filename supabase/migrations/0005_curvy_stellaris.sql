@@ -1,0 +1,1 @@
+ALTER TABLE "year" ADD COLUMN "is_stale" boolean DEFAULT true NOT NULL;

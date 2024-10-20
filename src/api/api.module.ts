@@ -6,6 +6,7 @@ import { ArticleModule } from './modules/article/article.module'
 import { CriteriaModule } from './modules/criteria/criteria.module'
 import { DistrictModule } from './modules/district/district.module'
 import { YearModule } from './modules/year/year.module'
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   providers: [ApiConfig],
@@ -18,6 +19,7 @@ import { YearModule } from './modules/year/year.module'
     CriteriaModule,
     DistrictModule,
     YearModule,
+    AuthModule,
   ],
 })
 export class ApiModule {}
