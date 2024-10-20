@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
-import { ApiConfig } from './config/api.config'
-import { UserModule } from './modules/user/user.module'
-import { ArticleModule } from './modules/article/article.module'
-import { CriteriaModule } from './modules/criteria/criteria.module'
-import { DistrictModule } from './modules/district/district.module'
-import { YearModule } from './modules/year/year.module'
-import { AuthModule } from './modules/auth/auth.module';
+import { ApiConfig } from '@api/config/api.config'
+import { UserModule } from '@api/modules/user/user.module'
+import { ArticleModule } from '@api/modules/article/article.module'
+import { CriteriaModule } from '@api/modules/criteria/criteria.module'
+import { DistrictModule } from '@api/modules/district/district.module'
+import { YearModule } from '@api/modules/year/year.module'
+import { AuthModule } from '@api/modules/auth/auth.module';
 
 @Module({
   providers: [ApiConfig],
