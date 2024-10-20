@@ -1,8 +1,19 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common'
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request } from '@nestjs/common'
 import { UserService } from './user.service'
 import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
 import { UserResponseDto } from './dto/user-response.dto'
+import { AuthGuard } from '../auth/auth.guard'
+
+interface IAuthContext {
+  token: IToken
+}
+
+interface IToken {
+  sub: number
+  iat: number
+  exp: number
+}
 
 @Controller('user')
 export class UserController {
@@ -11,6 +22,14 @@ export class UserController {
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto)
+  }
+
+  @UseGuards(AuthGuard)
+  @Get('profile')
+  getProfile(@Request() { token }: IAuthContext) {
+    const user = this.userService.findOne(token.sub)
+
+    return user
   }
 
   @Get()

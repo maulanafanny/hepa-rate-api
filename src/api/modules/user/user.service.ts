@@ -16,8 +16,19 @@ export class UserService {
     return await this.userDao.getAll()
   }
 
+  async findOneByEmail(email: string): Promise<UserEntity> {
+    return (await this.userDao.getOneBySingleKey('email', email, [
+      'id',
+      'name',
+      'email',
+      'createdAt',
+      'updatedAt',
+      'password'
+    ])) as UserEntity
+  }
+
   async findOne(id: number): Promise<UserEntity> {
-    return (await this.userDao.getOneById(id, [
+    return (await this.userDao.getOneBySingleKey('id', id, [
       'id',
       'name',
       'email',
