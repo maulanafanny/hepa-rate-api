@@ -21,8 +21,6 @@ export class UserService {
       'id',
       'name',
       'email',
-      'createdAt',
-      'updatedAt',
       'password'
     ])) as UserEntity
   }
@@ -32,8 +30,6 @@ export class UserService {
       'id',
       'name',
       'email',
-      'createdAt',
-      'updatedAt',
     ])) as UserEntity
   }
 
