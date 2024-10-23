@@ -43,6 +43,13 @@
       "when": 1729405483638,
       "tag": "0005_curvy_stellaris",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1729672981294,
+      "tag": "0006_white_chameleon",
+      "breakpoints": true
     }
   ]
 }
