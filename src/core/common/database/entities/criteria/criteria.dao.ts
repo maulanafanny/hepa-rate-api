@@ -23,4 +23,8 @@ export class CriteriaDao extends AbstractDao<
   ) {
     super(db, criteria, dbConfig)
   }
+
+  async insertBulkRecords(records: CriteriaEntityInsert[]) {
+    return await this.db.insert(this.useSchema).values(records).returning().execute()
+  }
 }

@@ -1,3 +1,3 @@
 export class CreateYearDto {
-  year: number
+  year: string
 }

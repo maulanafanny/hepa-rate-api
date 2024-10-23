@@ -18,6 +18,10 @@ export class CriteriaService {
     return await this.criteriaDao.insertNewRecord(createCriteriaDto)
   }
 
+  async createMany(createCriteriaDtos: CreateCriteriaDto[]) {
+    return await this.criteriaDao.insertBulkRecords(createCriteriaDtos)
+  }
+
   async findAll(): Promise<CriteriaEntity[]> {
     return await this.criteriaDao.getAll((query) => {
       query

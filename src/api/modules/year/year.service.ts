@@ -24,6 +24,10 @@ export class YearService {
     return await this.yearDao.updateById(id, updateYearDto)
   }
 
+  async updateIsStale(id: number, is_stale: boolean) {
+    return await this.yearDao.updateById(id, { is_stale })
+  }
+
   async remove(id: number) {
     return await this.yearDao.deleteById(id)
   }

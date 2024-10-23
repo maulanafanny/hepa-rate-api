@@ -6,6 +6,7 @@ import { DatabaseModule } from '../../../core/common/database/database.module'
 @Module({
   imports: [DatabaseModule],
   controllers: [YearController],
+  exports: [YearService],
   providers: [YearService],
 })
 export class YearModule {}
