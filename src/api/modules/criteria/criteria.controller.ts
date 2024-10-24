@@ -46,9 +46,13 @@ export class CriteriaController {
     return criteria
   }
 
-  @Get('clustering/:yearId')
-  async clustering(@Param('yearId') yearId: string) {
-    return this.criteriaService.clustering(+yearId)
+  @Post('clustering')
+  async clustering(@Body() { year_id }: { year_id: number }) {
+    const clusters = await this.criteriaService.clustering(Number(year_id))
+
+    this.yearService.updateIsStale(Number(year_id), false)
+
+    return clusters
   }
 
   @Delete(':id')

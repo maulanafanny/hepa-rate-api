@@ -8,3 +8,8 @@ export class UpdateCriteriaDto extends PartialType(CreateCriteriaDto) {
   clean_water_rate?: number
   safe_house_rate?: number
 }
+
+export class UpdateClusterDto {
+  id: number
+  cluster_id: number
+}

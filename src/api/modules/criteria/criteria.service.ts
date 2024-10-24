@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { eq } from 'drizzle-orm'
 import { CreateCriteriaDto } from './dto/create-criteria.dto'
-import { UpdateCriteriaDto } from './dto/update-criteria.dto'
+import { UpdateClusterDto, UpdateCriteriaDto } from './dto/update-criteria.dto'
 import { CriteriaDao } from '../../../core/common/database/entities/criteria/criteria.dao'
 import {
   criteria,
@@ -9,6 +9,7 @@ import {
 } from '../../../core/common/database/entities/criteria/criteria.entity'
 import { district } from '../../../core/common/database/entities/district/district.entity'
 import { year } from '../../../core/common/database/entities/year/year.entity'
+import 'dotenv/config'
 
 @Injectable()
 export class CriteriaService {
@@ -58,22 +59,46 @@ export class CriteriaService {
     return await this.criteriaDao.updateById(id, updateCriteriaDto)
   }
 
+  async updateClusters(updateClusterDtos: UpdateClusterDto[]) {
+    const updatePromises = updateClusterDtos.slice(1).map((dto) =>
+      this.criteriaDao.updateById(dto.id, {
+        cluster_id: dto.cluster_id,
+      }),
+    )
+
+    await Promise.all(updatePromises)
+
+    return {
+      message: 'Clusters updated',
+      status: 'success',
+      data: null,
+    }
+  }
+
   async clustering(yearId: number) {
     const data = (await this.criteriaDao.getAll())
       .filter((d) => d.year_id === yearId)
       .map((d) => ({
+        id: d.id,
+        year_id: d.year_id,
+        district_id: d.district_id,
         total_case: d.total_case,
         clean_water_rate: d.clean_water_rate,
         safe_house_rate: d.safe_house_rate,
         total_population: d.total_population,
         sanitation_rate: d.sanitation_rate,
-        district_id: d.district_id,
-        year_id: d.year_id,
       }))
       .sort((a, b) => a.district_id - b.district_id)
 
+    const payloads = data.map((d) => {
+      return {
+        id: d.id,
+        cluster_id: null,
+      }
+    })
+
     try {
-      const response = await fetch('http://127.0.0.1:3333/clustering', {
+      const response = await fetch(`${process.env.FLASK_API_URL}/clustering`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -83,12 +108,22 @@ export class CriteriaService {
         }),
       })
 
-      console.log(response.status)
+      const { cluster } = await response.json()
+
+      payloads.forEach((d, i) => {
+        d.cluster_id = cluster[i]
+      })
     } catch (error) {
       console.log(error)
     }
 
-    return data
+    try {
+      await this.updateClusters(payloads)
+    } catch (error) {
+      console.log(error)
+    }
+
+    return payloads
   }
 
   async remove(id: number) {
